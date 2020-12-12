@@ -7,15 +7,17 @@ class App extends Component {
     super();
     this.state = {
       shibe: [],
-      // searchfield: ''
+      isLoaded: false,
     }
   }
   componentDidMount() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const apiUrl = 'http://shibe.online/api/shibes?count=10&urls=true&httpsUrls=true';
+
     fetch(proxyurl + apiUrl)
       .then((response) => response.json())
-      .then((data) => this.setState({shibe:data}, () => {console.log(this.state.shibe)}))
+      .then((data) => this.setState({shibe:data, 
+                                    isLoaded: true}, () => {console.log(this.state.shibe)}))
       .catch(() => console.log("Can’t access " + apiUrl + " response. Blocked by browser?"));
   }
 
@@ -23,14 +25,25 @@ class App extends Component {
 
 
   render() {
-    const robots = this.state.shibe;
+
+    const { isLoaded, shibe} = this.state;
+
+    if(!isLoaded){
+      return <div> Loading... </div>
+    }
+
+
+    const robots = shibe;
     const cardComponent = robots.map((i) => {
       return ( 
-        <div className = 'bg-light-red dib v-top center w-third br3 pa2 mw-100 mh-100 ma2 grow bw2 shadow-5'>
+        <div className = 'bg-light-red dib v-top center w-third br3 pa2 m-100 mh-100 ma2 grow bw2 shadow-5'>
             <img alt = 'robots' src = {i}/>
         </div>
         )
     })
+
+    
+
 
     return (
       <div>
