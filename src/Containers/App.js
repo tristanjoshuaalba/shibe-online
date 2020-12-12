@@ -26,7 +26,7 @@ class App extends Component {
     const robots = this.state.shibe;
     const cardComponent = robots.map((i) => {
       return ( 
-        <div className = 'bg-light-green dib v-top center w-third br3 pa2 mw-100 mh-100 ma2 grow bw2 shadow-5'>
+        <div className = 'bg-light-red dib v-top center w-third br3 pa2 mw-100 mh-100 ma2 grow bw2 shadow-5'>
             <img alt = 'robots' src = {i}/>
         </div>
         )
