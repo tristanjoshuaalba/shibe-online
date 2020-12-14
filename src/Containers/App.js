@@ -10,6 +10,7 @@ class App extends Component {
       isLoaded: false,
     }
   }
+  
   componentDidMount() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const apiUrl = 'http://shibe.online/api/shibes?count=10&urls=true&httpsUrls=true';
